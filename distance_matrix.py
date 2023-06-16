@@ -21,8 +21,7 @@ def generate_distance_matrix(place_ids):
                 row.append(distance)
         distance_matrix.append(row)
 
-    for row in distance_matrix:
-        print(row)
+    return distance_matrix
 
 
 if __name__ == '__main__':

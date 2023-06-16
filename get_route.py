@@ -3,8 +3,8 @@ import googlemaps
 from autocomplete import API_KEY
 
 
-def get_route(api_key, start_place_id, end_place_id):
-    gmaps = googlemaps.Client(key=api_key)
+def get_route(start_place_id, end_place_id):
+    gmaps = googlemaps.Client(key=API_KEY)
 
     # Request directions
     directions = gmaps.directions(
@@ -26,7 +26,7 @@ def get_route(api_key, start_place_id, end_place_id):
     return points
 
 
-api_key = API_KEY  # replace this with your actual API key
-start_place_id = 'ChIJX_OXBPtPBEcRS24cQch39SA'  # replace this with your actual start place ID
-end_place_id = 'ChIJvRmjsCygFkcRvFDfvAr1xzo'  # replace this with your actual end place ID
-print(get_route(api_key, start_place_id, end_place_id))
+if __name__ == '__main__':
+    _start_place_id = 'ChIJX_OXBPtPBEcRS24cQch39SA'  # replace this with your actual start place ID
+    _end_place_id = 'ChIJvRmjsCygFkcRvFDfvAr1xzo'  # replace this with your actual end place ID
+    print(get_route(_start_place_id, _end_place_id))

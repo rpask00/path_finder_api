@@ -1,9 +1,8 @@
-import asyncio
+import json
 import json
 import re
 
 import googlemaps
-import requests
 from bson import ObjectId
 from bson.json_util import dumps
 from dotenv import load_dotenv
@@ -11,7 +10,7 @@ from flask import Flask, request, Response, make_response, jsonify
 from pymongo import MongoClient
 
 from autocomplete import autocomplete, API_KEY
-from get_geometry_info import fetch_all_places
+from vrp_solver import vrp_solve_main
 
 load_dotenv()
 
@@ -99,6 +98,21 @@ def delete_ip_address(_id):
     db['ip_addresses'].delete_one({'_id': _id})
 
     return make_response('', 204)
+
+
+@app.route('/api/vrp_solve', methods=['GET'])
+def get_vrp_solve():
+    depot = request.args.get('depot', default=1)
+    num_vehicles = int(request.args.get('num_vehicles', default=1))
+    place_ids = request.args.getlist('place_id')
+    json.dump(place_ids, open('example_place_ids.json', 'w'))
+
+    vrp_solution = vrp_solve_main(place_ids, num_vehicles, depot)
+
+    if vrp_solution:
+        return make_response(json.dumps(vrp_solution), 200, {'Content-Type': 'application/json'})
+
+    return make_response('No solution found', 404)
 
 
 @app.route('/api/locations', methods=['GET'])
