@@ -102,7 +102,7 @@ def delete_ip_address(_id):
 
 @app.route('/api/vrp_solve', methods=['GET'])
 def get_vrp_solve():
-    depot = request.args.get('depot', default=1)
+    depot = int(request.args.get('depot', default=0))
     num_vehicles = int(request.args.get('num_vehicles', default=1))
     place_ids = request.args.getlist('place_id')
     json.dump(place_ids, open('example_place_ids.json', 'w'))
@@ -117,6 +117,7 @@ def get_vrp_solve():
 
 @app.route('/api/locations', methods=['GET'])
 def get_locations():
+    types = request.args.getlist('type')
     search = request.args.get('search')
     API_KEY = 'AIzaSyDQjweYwLm4pqNCXBX4oXm09HZUXvHdkA8'
     params = {
@@ -133,7 +134,7 @@ def get_locations():
     payload = {}
     headers = {}
 
-    response = autocomplete(search, API_KEY) if len(search) > 2 else []
+    response = autocomplete(search, API_KEY, types) if len(search) > 2 else []
     return make_response(json.dumps(response), 200, {'Content-Type': 'application/json'})
 
 

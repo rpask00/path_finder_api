@@ -2,7 +2,7 @@ import googlemaps
 
 API_KEY = 'AIzaSyDQjweYwLm4pqNCXBX4oXm09HZUXvHdkA8'
 
-types = [
+allowed_types = [
     # 'accounting',
     # 'airport',
     # 'amusement_park',
@@ -102,13 +102,12 @@ types = [
 ]
 
 
-def autocomplete(input_str, api_key):
+def autocomplete(input_str, api_key, types):
     gmaps = googlemaps.Client(key=api_key)
 
     _types = '|'.join(types)
 
     result = gmaps.places_autocomplete(input_str, types=_types, components={'country': 'pl'})
-    print(result)
     return result
 
 
