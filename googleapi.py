@@ -7,10 +7,13 @@
 
    Distances are in meters.
 """
+import os
 
 from ortools.constraint_solver import routing_enums_pb2
 
 from ortools.constraint_solver import pywrapcp
+
+API_KEY = os.environ.get('API_KEY')
 
 
 def parse_solution(data, manager, routing, solution, print_solution=True):
@@ -45,7 +48,7 @@ def parse_solution(data, manager, routing, solution, print_solution=True):
     return routes_order, max_route_distance
 
 
-def solve_vrp(data, vehicle_maximum_travel_distance=1000*1000*10):
+def solve_vrp(data, vehicle_maximum_travel_distance=1000 * 1000 * 10):
     # Create the routing index manager.
     manager = pywrapcp.RoutingIndexManager(len(data['distance_matrix']), data['num_vehicles'], data['depot'])
 

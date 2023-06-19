@@ -1,6 +1,6 @@
 import googlemaps
 
-from app import API_KEY
+from googleapi import API_KEY
 
 allowed_types = [
     # 'accounting',

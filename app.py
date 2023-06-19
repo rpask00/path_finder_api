@@ -7,10 +7,10 @@ from flask import Flask, request, make_response, jsonify
 from pymongo import MongoClient
 
 from autocomplete import autocomplete
+from googleapi import API_KEY
 from vrp_solver import vrp_solve_main
 
 load_dotenv()
-API_KEY = os.environ.get('API_KEY')
 MDB_URI = os.environ.get('MDB_URI')
 DB_NAME = 'path_finder'
 
@@ -33,6 +33,11 @@ def apply_headers(response):
     response.headers["Access-Control-Allow-Headers"] = "*"
 
     return response
+
+
+@app.route('/', methods=['GET'])
+def home():
+    return 'Hello, World!'
 
 
 @app.route('/api/vrp_solve', methods=['GET'])
