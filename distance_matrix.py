@@ -1,6 +1,6 @@
 import googlemaps
 
-from autocomplete import API_KEY
+from app import API_KEY
 
 gmaps = googlemaps.Client(key=API_KEY)
 

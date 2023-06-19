@@ -1,6 +1,6 @@
 import googlemaps
 
-from autocomplete import API_KEY
+from app import API_KEY
 
 
 def get_route(start_place_id, end_place_id):

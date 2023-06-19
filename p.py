@@ -1,15 +1,13 @@
 import googlemaps
 
-from autocomplete import API_KEY
+from app import API_KEY
 
 
-def get_place_details(api_key, place_name):
-    gmaps = googlemaps.Client(key=api_key)
+def get_place_details(place_name):
+    gmaps = googlemaps.Client(key=API_KEY)
 
     # Request for place autocomplete
     autocomplete_result = gmaps.places_autocomplete(place_name)
-
-
 
     # if there are results, fetch latitude and longitude
     if autocomplete_result:
@@ -27,10 +25,9 @@ def get_place_details(api_key, place_name):
     return None
 
 
-api_key = API_KEY  # Replace with your Google Places API key
 place_name = 'New York'  # Replace with the place name you are searching for
 
-place_details = get_place_details(api_key, place_name)
+place_details = get_place_details(place_name)
 
 if place_details:
     print(place_details)

@@ -2,7 +2,7 @@ import asyncio
 
 import aiohttp
 
-from autocomplete import API_KEY
+from app import API_KEY
 
 
 async def fetch_place(session, url):

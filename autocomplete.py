@@ -1,6 +1,6 @@
 import googlemaps
 
-API_KEY = 'AIzaSyDQjweYwLm4pqNCXBX4oXm09HZUXvHdkA8'
+from app import API_KEY
 
 allowed_types = [
     # 'accounting',
@@ -112,4 +112,4 @@ def autocomplete(input_str, api_key, types):
 
 
 if __name__ == '__main__':
-    print(autocomplete('Spode', 'AIzaSyDQjweYwLm4pqNCXBX4oXm09HZUXvHdkA8'))
+    print(autocomplete('Spode', API_KEY))
