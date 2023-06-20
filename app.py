@@ -4,7 +4,6 @@ import os
 import googlemaps
 from dotenv import load_dotenv
 from flask import Flask, request, make_response, jsonify
-from pymongo import MongoClient
 
 from autocomplete import autocomplete
 from googleapi import API_KEY
@@ -15,9 +14,6 @@ MDB_URI = os.environ.get('MDB_URI')
 DB_NAME = 'path_finder'
 
 app = Flask(__name__)
-
-client = MongoClient(MDB_URI)
-db = client[DB_NAME]
 
 
 @app.before_request
